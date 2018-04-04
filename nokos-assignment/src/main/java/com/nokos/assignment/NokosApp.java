@@ -1,6 +1,7 @@
 package com.nokos.assignment;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,13 @@ public class NokosApp {
 			case 1:
 				String filePath = getFilePath();
 				if (filePath != null) {
-
+					java.io.File file = new java.io.File(filePath);
+					boolean isAllowed = checkFileExtension(file);
+					if (isAllowed) {
+						String fileType = getFileType(file);
+					} else {
+						System.out.println("File type is not allowed");
+					}
 				}
 				break;
 			case 2:
@@ -41,6 +48,22 @@ public class NokosApp {
 			}
 		} while (userChoice != 3);
 
+	}
+
+	private static String getFileType(java.io.File file) {
+		String fileType = "Undetermined";
+		try {
+			fileType = Files.probeContentType(file.toPath());
+		} catch (IOException ioException) {
+			System.out.println(
+					"ERROR: Unable to determine file type for " + file.getName() + " due to exception " + ioException);
+		}
+		return fileType;
+	}
+
+	private static boolean checkFileExtension(java.io.File file) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	private static String getFilePath() {

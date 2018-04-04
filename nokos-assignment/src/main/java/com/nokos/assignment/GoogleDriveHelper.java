@@ -11,8 +11,8 @@ public class GoogleDriveHelper implements FileHandler {
 
 	static Drive service = null;
 
-	public void UploadFiles(java.io.File file, String filePath) {
-		// TODO Auto-generated method stub
+	public java.io.File UploadFiles(java.io.File file, String filePath, String fileType) {
+		return null;
 
 	}
 
