@@ -21,7 +21,10 @@ public class NokosApp {
 					java.io.File file = new java.io.File(filePath);
 					boolean isAllowed = checkFileExtension(file);
 					if (isAllowed) {
-						String fileType = getFileType(file);
+						GoogleDriveHelper driveHelper = new GoogleDriveHelper();
+						String contentType = getContentType(file);
+						driveHelper.UploadFile(file, contentType);
+						System.out.println("Content Type: " + contentType);
 					} else {
 						System.out.println("File type is not allowed");
 					}
@@ -50,20 +53,26 @@ public class NokosApp {
 
 	}
 
-	private static String getFileType(java.io.File file) {
+	private static String getContentType(java.io.File file) {
 		String fileType = "Undetermined";
 		try {
 			fileType = Files.probeContentType(file.toPath());
 		} catch (IOException ioException) {
-			System.out.println(
-					"ERROR: Unable to determine file type for " + file.getName() + " due to exception " + ioException);
+			System.out.println("ERROR: Unable to determine content type for " + file.getName() + " due to exception "
+					+ ioException);
 		}
 		return fileType;
 	}
 
 	private static boolean checkFileExtension(java.io.File file) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isAllowed = false;
+		String fileName = file.getName();
+		String ext = "";
+		if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+			ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+		if (ext.equalsIgnoreCase("doc") || ext.equalsIgnoreCase("docx"))
+			return true;
+		return isAllowed;
 	}
 
 	private static String getFilePath() {

@@ -26,7 +26,7 @@ public class GoogleAuthentication {
 
 	/** Directory to store user credentials for this application. */
 	private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"),
-			".credentials/drive-java-quickstart");
+			".credentials/nokos-tech");
 
 	/** Global instance of the {@link FileDataStoreFactory}. */
 	private static FileDataStoreFactory DATA_STORE_FACTORY;
@@ -37,7 +37,7 @@ public class GoogleAuthentication {
 	/** Global instance of the HTTP transport. */
 	private static HttpTransport HTTP_TRANSPORT;
 
-	private static final List<String> SCOPES = Arrays.asList(DriveScopes.DRIVE_FILE);
+	private static final List<String> SCOPES = Arrays.asList(DriveScopes.DRIVE);
 
 	static {
 		try {

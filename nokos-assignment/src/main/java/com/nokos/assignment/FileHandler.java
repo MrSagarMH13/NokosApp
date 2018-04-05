@@ -7,7 +7,7 @@ import com.google.api.services.drive.model.File;
 
 public interface FileHandler {
 
-	java.io.File UploadFiles(java.io.File file, String filePath, String fileType);
+	File UploadFile(java.io.File file, String contentType) throws IOException;
 
 	List<File> getFiles() throws IOException;
 }
